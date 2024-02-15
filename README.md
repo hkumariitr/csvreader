@@ -1,70 +1,165 @@
-# Getting Started with Create React App
+Project Title – CSV READER
+Project Description -
+CSV Reader is a user-friendly desktop application designed to simplify the process of exploring and visualizing CSV (Comma-Separated Values) files. Built on the React frameworks, this application provides an intuitive interface for users to effortlessly select, load, and view CSV files from their local filesystem. 
+For the front end, React JS Framework was used. This project has the following ReactJS components -
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+App Component: This single ReactJS component allows users to upload their CSV files. Based on the given CSV File, it will create a table out of it. The component uses papaparse library for parsing CSV data. Pagination is done in the component to seamlessly access CSV data.
 
-## Available Scripts
+At the start, the Choose File option is available through the input method of HTML. If no file is selected, an alert is generated that no file is selected. After the successful upload of the file, a table with records per page table is generated. Users can navigate to different records using the Previous and Next Page buttons. 
 
-In the project directory, you can run:
+How to run the Project?
+Use npm install -I <dependency_name> to install the following dependencies used in the project -
+Client Side -
+1.	React - The react package contains only the functionality necessary to define React components.
+2.	React-dom - This package serves as the entry point to the DOM and server renderers for React.
+3.	Papaparse - Fast and powerful CSV parser for the browser that supports web workers and streaming large files. Converts CSV to JSON and JSON to CSV. 
+4.	React-toastify: The React-Toastify package enables developers to add toast notifications to their applications and also can set notifications and warnings. It also allows us to display toasts to users that contain messages and information for a set amount of time.
 
-### `npm start`
+To Run the Project –
+●	Open the terminal and write npm run start to start the app.
+●	App is running on "http://localhost:3000".
+●	The page must display CSV Reader Heading followed by a Choose File Button.
+●	Click Choose File to select the CSV File to open and read its contents on the app.
+Landing Page -
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+•	After Clicking on Choose File button, a dialog box will appear asking to select the file to open.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ 
+●	The dialog box asks you to upload CSV file to access the data.
+●	After selecting the file, the information will be displayed as follows – 
+ 
+●	A table displaying all the CSV data will be displayed.
+●	Clicking through Next and Previous Page, user can easily navigate to different section of records.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Code Breakdown   (App.js file ) –
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Import Statements
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+import "./App.css";
+import { useState } from "react";
+import Papa from "papaparse";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-## Learn More
+Imports necessary for the component include the styling file (App.css), React's useState hook, Papa from the papaparse library for CSV parsing, and ToastContainer and toast from react-toastify for displaying error messages.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+React Functional Component
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+function App() {
+  // State to store parsed data
+  const [parsedData, setParsedData] = useState([]);
 
-### Code Splitting
+  // State to store table Column name
+  const [tableRows, setTableRows] = useState([]);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  // State to store the values
+  const [values, setValues] = useState([]);
 
-### Analyzing the Bundle Size
+Three state variables (parsedData, tableRows, values) are declared using the useState hook to manage the state of parsed CSV data, table column names, and values, respectively.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+File Upload and Error Handling Functions
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  // Error message when no file selected
+  const fileError = () => {
+    toast.error('No file chosen', {
+      // ...toast configuration options
+    });
+  };
 
-### Deployment
+  // File selection function handler
+  const changeHandler = (event) => {
+    // ... (File parsing logic)
+  };
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+fileError: Displays an error toast message when no file is selected.
+changeHandler: Handles the file selection event, parses the selected CSV file using papaparse, and updates the state variables with parsed data, table column names, and values.
 
-### `npm run build` fails to minify
+Error Handling Toast Functions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  const prevPageError = () => {
+    toast.error('You are already on Page 1', {
+      // ...toast configuration options
+    });
+  };
+
+  const nextPageError = () => {
+    toast.error('No More Records to show!', {
+      // ...toast configuration options
+    });
+  };
+prevPageError: Displays an error toast message when attempting to go to a previous page when already on Page 1.
+nextPageError: Displays an error toast message when attempting to go to the next page when there are no more records to show.
+Pagination Variables and Functions
+
+
+  Pagination Variables
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 10;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const records = values.slice(firstIndex, lastIndex);
+
+  function prePage() {
+    // ... (Function to navigate to the previous page with error handling)
+  }
+
+  function nextPage() {
+    // ... (Function to navigate to the next page with error handling)
+  }
+
+Pagination-related state variables and functions to navigate to the previous and next pages are defined.
+ 
+JSX - UI Rendering
+
+  return (
+    <div>
+      {/* Page Head */}
+      <h1> CSV File Reader </h1>
+
+      {/* File Uploader */}
+      <input
+        type="file"
+        name="file"
+        id="fileInput"
+        onChange={changeHandler}
+        accept=".csv"
+        style={{ display: "block", margin: "10px auto" }}
+        data-file-name={values.length > 0 ? values[0].name : ""}
+      />
+      
+      {/* Table */}
+      <table>
+        {/* ... (Table header and body rendering) */}
+      </table>
+
+      {values.length > 0 && (
+        <nav>
+          <ul className="pagination">
+            {/* ... (Pagination controls) */}
+          </ul>
+        </nav>
+      )}
+      <ToastContainer/>
+    </div>
+  );
+}
+
+The main component function returns JSX for rendering the UI, including a file input, table for displaying CSV data, pagination controls, and error toast notifications.
+
+
+Conclusion
+
+The provided code defines a React component for a CSV Reader App, incorporating functionality for file uploading, parsing, error handling, pagination, and UI rendering. It utilizes the papaparse library for CSV parsing and react-toastify for displaying error messages. 
+.
