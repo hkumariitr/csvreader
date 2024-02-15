@@ -1,45 +1,34 @@
+**Description**
 CSV Reader is a user-friendly desktop application designed to simplify the process of exploring and visualizing CSV (Comma-Separated Values) files. Built on the React frameworks, this application provides an intuitive interface for users to effortlessly select, load, and view CSV files from their local filesystem. 
 For the front end, React JS Framework was used. This project has the following ReactJS components -
 
-App Component: This single ReactJS component allows users to upload their CSV files. Based on the given CSV File, it will create a table out of it. The component uses papaparse library for parsing CSV data. Pagination is done in the component to seamlessly access CSV data.
+**App Component:** This single ReactJS component allows users to upload their CSV files. Based on the given CSV File, it will create a table out of it. The component uses papaparse library for parsing CSV data. Pagination is done in the component to seamlessly access CSV data.
 
 At the start, the Choose File option is available through the input method of HTML. If no file is selected, an alert is generated that no file is selected. After the successful upload of the file, a table with records per page table is generated. Users can navigate to different records using the Previous and Next Page buttons. 
 
-How to run the Project?
+**How to run the Project?**
+
 Use npm install -I <dependency_name> to install the following dependencies used in the project -
-Client Side -
+
 1.	React - The react package contains only the functionality necessary to define React components.
 2.	React-dom - This package serves as the entry point to the DOM and server renderers for React.
 3.	Papaparse - Fast and powerful CSV parser for the browser that supports web workers and streaming large files. Converts CSV to JSON and JSON to CSV. 
 4.	React-toastify: The React-Toastify package enables developers to add toast notifications to their applications and also can set notifications and warnings. It also allows us to display toasts to users that contain messages and information for a set amount of time.
 
 To Run the Project –
+
 ●	Open the terminal and write npm run start to start the app.
 ●	App is running on "http://localhost:3000".
 ●	The page must display CSV Reader Heading followed by a Choose File Button.
 ●	Click Choose File to select the CSV File to open and read its contents on the app.
-Landing Page -
-
-
-
-
-•	After Clicking on Choose File button, a dialog box will appear asking to select the file to open.
-
-
- 
-●	The dialog box asks you to upload CSV file to access the data.
-●	After selecting the file, the information will be displayed as follows – 
- 
+•	After Clicking on Choose File button, a dialog box will appear asking to select the file to open. 
+●	The dialog box asks you to upload CSV file to access the data. 
 ●	A table displaying all the CSV data will be displayed.
 ●	Clicking through Next and Previous Page, user can easily navigate to different section of records.
 
+**Code Breakdown   (App.js file ) –**
 
-
-
-
-Code Breakdown   (App.js file ) –
-
-Import Statements
+**Import Statements**
 
 import "./App.css";
 import { useState } from "react";
@@ -49,7 +38,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 Imports necessary for the component include the styling file (App.css), React's useState hook, Papa from the papaparse library for CSV parsing, and ToastContainer and toast from react-toastify for displaying error messages.
 
-React Functional Component
+**React Functional Component**
 
 function App() {
   // State to store parsed data
@@ -63,9 +52,7 @@ function App() {
 
 Three state variables (parsedData, tableRows, values) are declared using the useState hook to manage the state of parsed CSV data, table column names, and values, respectively.
 
-
-
-File Upload and Error Handling Functions
+**File Upload and Error Handling Function**s
 
 
   // Error message when no file selected
@@ -83,7 +70,7 @@ File Upload and Error Handling Functions
 fileError: Displays an error toast message when no file is selected.
 changeHandler: Handles the file selection event, parses the selected CSV file using papaparse, and updates the state variables with parsed data, table column names, and values.
 
-Error Handling Toast Functions
+**Error Handling Toast Functions**
 
   const prevPageError = () => {
     toast.error('You are already on Page 1', {
@@ -101,7 +88,7 @@ nextPageError: Displays an error toast message when attempting to go to the next
 Pagination Variables and Functions
 
 
-  Pagination Variables
+**Pagination Variables**
 
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 10;
@@ -119,7 +106,7 @@ Pagination Variables and Functions
 
 Pagination-related state variables and functions to navigate to the previous and next pages are defined.
  
-JSX - UI Rendering
+**JSX - UI Rendering**
 
   return (
     <div>
@@ -157,7 +144,6 @@ JSX - UI Rendering
 The main component function returns JSX for rendering the UI, including a file input, table for displaying CSV data, pagination controls, and error toast notifications.
 
 
-Conclusion
+**Conclusion**
 
-The provided code defines a React component for a CSV Reader App, incorporating functionality for file uploading, parsing, error handling, pagination, and UI rendering. It utilizes the papaparse library for CSV parsing and react-toastify for displaying error messages. 
-.
+The provided code defines a React component for a CSV Reader App, incorporating functionality for file uploading, parsing, error handling, pagination, and UI rendering. It utilizes the papaparse library for CSV parsing and react-toastify for displaying error messages.
