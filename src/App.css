@@ -1,38 +1,75 @@
-.App {
+input {
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+
+
+input::file-selector-button {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.5em;
+  border: thin solid grey;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+h1 {
   text-align: center;
+  color: #3498db;
+  font-family: 'Arial', sans-serif; 
+  font-size: 4rem; 
+  font-weight: bold; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* Styling the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+th {
+  background-color: #3498db;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.page-link {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  color: #3498db;
+  border: 1px solid #3498db;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-link:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Bold button text */
+input[type="file"]::after,
+.page-link {
+  font-weight: bold;
+}
+
+.pagination{
+  list-style: none;
 }
