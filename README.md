@@ -1,5 +1,3 @@
-Project Title – CSV READER
-Project Description -
 CSV Reader is a user-friendly desktop application designed to simplify the process of exploring and visualizing CSV (Comma-Separated Values) files. Built on the React frameworks, this application provides an intuitive interface for users to effortlessly select, load, and view CSV files from their local filesystem. 
 For the front end, React JS Framework was used. This project has the following ReactJS components -
 
